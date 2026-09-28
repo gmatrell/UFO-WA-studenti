@@ -243,6 +243,12 @@ else
   fi
 fi
 
+if [[ "${UFO_LAUNCHER_REEXECUTED:-0}" != 1 ]]; then
+  [[ -f "$INSTALL_DIR/ufo.sh" ]] || die "lo script aggiornato non è presente in $INSTALL_DIR"
+  export UFO_LAUNCHER_REEXECUTED=1
+  exec bash "$INSTALL_DIR/ufo.sh" "$@"
+fi
+
 installed_version="$(package_version "$INSTALL_DIR")"
 if ! version_is_greater "$installed_version" "$latest_version" && [[ "$installed_version" != "$latest_version" ]]; then
   die "la copia installata dichiara $installed_version, ma il tag selezionato è $latest_tag"

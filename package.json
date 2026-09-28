@@ -1,6 +1,6 @@
 {
   "name": "ufo-wa",
-  "version": "1.9.7",
+  "version": "1.9.8",
   "private": true,
   "description": "UFO: WebApp didattica locale per simulazione e sintesi VHDL",
   "main": "src/cli.js",

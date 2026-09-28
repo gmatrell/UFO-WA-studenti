@@ -948,8 +948,10 @@ Il 28 settembre 2026 è stato aggiunto `ufo.sh` per la distribuzione agli studen
 
 Prima dell'aggiornamento verifica che il clone punti allo stesso repository e che non contenga modifiche locali o file non tracciati; in caso contrario si arresta senza sovrascrivere il lavoro. Non effettua downgrade se la copia locale dichiara una versione più recente della release pubblica. Le dipendenze JavaScript vengono ricostruite con `npm ci --ignore-scripts` soltanto quando il lockfile non è già registrato come allineato. GHDL, Yosys e GTKWave non vengono installati: lo script ne controlla soltanto la presenza e mostra un avviso.
 
-La versione applicativa e quella del lockfile sono state predisposte a `1.9.7`, nuova release patch che userà il repository pubblico separato `UFO-WA-studenti`. Il tag precedente era `v1.9.6`; in questa fase non sono stati installati programmi. Il repository pubblico di distribuzione dovrà ricevere questa release prima del collaudo dalla macchina Ubuntu, quindi da ripetere su Rocky.
+La versione applicativa e quella del lockfile sono state predisposte a `1.9.8`, nuova release patch che userà il repository pubblico separato `UFO-WA-studenti`. Il tag precedente era `v1.9.7`; in questa fase non sono stati installati programmi. Il repository pubblico di distribuzione dovrà ricevere questa release prima del collaudo dalla macchina Ubuntu, quindi da ripetere su Rocky.
 
 La distribuzione pubblica è stata inoltre corretta perché la creazione della cronologia standalone applicava il `.gitignore` del progetto e lasciava fuori alcuni asset grafici storici non esclusi dal sorgente privato. La prossima copia pubblica dovrà forzare l'inclusione di tutti i file `immagini/*` versionati, compresi icone, logo e sigillo.
 
 Lo script di avvio è stato esteso per attendere l'ascolto del servizio locale e aprire automaticamente l'URL nel primo launcher grafico disponibile (`wslview`, `xdg-open`, `gio` o `cmd.exe`). In assenza di un launcher, UFO resta avviato e viene mostrato l'indirizzo da aprire manualmente.
+
+È stato corretto anche il passaggio di aggiornamento dello script: dopo un clone o un checkout di una release più recente, il launcher si riavvia dalla copia aggiornata presente in `~/UFO-WA`, invece di continuare l'esecuzione del vecchio file già caricato dalla shell.
