@@ -115,6 +115,88 @@ ensure_workspace() {
   fi
 }
 
+has_help_option() {
+  local argument
+  for argument in "$@"; do
+    if [[ "$argument" == '--help' || "$argument" == '-h' ]]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+requested_port() {
+  local port="${UFO_PORT:-8080}"
+  local argument waiting_for_port=0
+  for argument in "$@"; do
+    if ((waiting_for_port)); then
+      port="$argument"
+      waiting_for_port=0
+      continue
+    fi
+    case "$argument" in
+      --port=*) port="${argument#--port=}" ;;
+      --port) waiting_for_port=1 ;;
+    esac
+  done
+  printf '%s\n' "$port"
+}
+
+wait_for_server() {
+  local application_pid="$1" port="$2" attempt
+  for ((attempt = 0; attempt < 100; attempt += 1)); do
+    if ! kill -0 "$application_pid" 2>/dev/null; then
+      return 1
+    fi
+    if (exec 3<>"/dev/tcp/127.0.0.1/$port") 2>/dev/null; then
+      exec 3>&-
+      return 0
+    fi
+    sleep 0.1
+  done
+  return 1
+}
+
+open_browser() {
+  local url="$1"
+  if command -v wslview >/dev/null 2>&1; then
+    wslview "$url" >/dev/null 2>&1 &
+  elif command -v cmd.exe >/dev/null 2>&1; then
+    cmd.exe /c start "" "$url" >/dev/null 2>&1 &
+  elif command -v xdg-open >/dev/null 2>&1; then
+    xdg-open "$url" >/dev/null 2>&1 &
+  elif command -v gio >/dev/null 2>&1; then
+    gio open "$url" >/dev/null 2>&1 &
+  else
+    log "Browser non rilevato: apri manualmente $url"
+    return 0
+  fi
+  log "Browser aperto su $url"
+}
+
+run_application() {
+  local port="$1"
+  shift
+  local application_pid application_status=0
+  local url="http://127.0.0.1:$port"
+
+  (cd "$INSTALL_DIR" && exec npm start -- "$@") &
+  application_pid=$!
+  trap 'kill "$application_pid" 2>/dev/null || true' INT TERM
+
+  if [[ "$port" =~ ^[0-9]+$ && "$port" -gt 0 ]] && wait_for_server "$application_pid" "$port"; then
+    open_browser "$url"
+  elif kill -0 "$application_pid" 2>/dev/null; then
+    log "UFO è in avvio ma non riesco ad aprire automaticamente il browser; usa $url"
+  else
+    log "UFO non ha avviato il servizio su $url"
+  fi
+
+  wait "$application_pid" || application_status=$?
+  trap - INT TERM
+  return "$application_status"
+}
+
 require_command git
 require_command node
 require_command npm
@@ -170,6 +252,11 @@ ensure_dependencies
 check_optional_tools
 ensure_workspace
 
+if has_help_option "$@"; then
+  cd "$INSTALL_DIR"
+  exec npm start -- "$@"
+fi
+
+port="$(requested_port "$@")"
 log "Avvio UFO $installed_version."
-cd "$INSTALL_DIR"
-exec npm start -- "$@"
+run_application "$port" "$@"

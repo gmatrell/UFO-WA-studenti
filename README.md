@@ -37,7 +37,7 @@ curl -fsSL https://raw.githubusercontent.com/gmatrell/UFO-WA-studenti/main/ufo.s
 bash "$HOME/ufo.sh"
 ```
 
-Lo script richiede Git, Node.js 22 o successivo e npm già presenti; non installa programmi di sistema. Controlla inoltre la presenza di GHDL, Yosys e GTKWave e mostra un avviso se uno di questi strumenti manca. Un clone con modifiche locali non viene aggiornato automaticamente, per evitare di sovrascrivere il lavoro dello studente.
+Lo script richiede Git, Node.js 22 o successivo e npm già presenti; non installa programmi di sistema. Controlla inoltre la presenza di GHDL, Yosys e GTKWave e mostra un avviso se uno di questi strumenti manca. Dopo avere avviato il servizio apre automaticamente `http://127.0.0.1:8080` nel browser disponibile; se non rileva un launcher grafico, mostra l’indirizzo da aprire manualmente. Un clone con modifiche locali non viene aggiornato automaticamente, per evitare di sovrascrivere il lavoro dello studente.
 
 ## Avvio
 
