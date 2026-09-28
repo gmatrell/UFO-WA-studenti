@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="ufo-token" content="__UFO_TOKEN__">
+  <title>UFO — VHDL Learning Workbench</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="icon" type="image/svg+xml" href="/immagini/ufo.svg">
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <img class="brand-icon" src="/immagini/ufo.svg" alt="UFO">
+      <div>
+        <strong>UFO</strong>
+        <span>Unified File Orchestrator</span>
+      </div>
+    </div>
+    <div class="runtime-state">
+      <span class="status-dot"></span>
+      <span id="connection-label">WSL-FeLED · locale</span>
+      <span class="root-label" id="projects-root">Caricamento radice…</span>
+    </div>
+  </header>
+
+  <main class="workspace-layout">
+    <aside class="sidebar panel">
+      <div class="panel-title">
+        <span>WORKSPACE</span>
+        <button class="icon-button" id="refresh-tree" title="Aggiorna progetti">↻</button>
+      </div>
+      <div class="tree-toolbar" aria-label="Azioni progetti e file">
+        <button id="new-project" title="Nuovo progetto">＋ Progetto</button>
+        <button id="new-file" title="Nuova ENTITY VHDL e testbench">＋ VHDL</button>
+        <button id="import-file" title="Importa uno o più file VHDL">⇧ Importa</button>
+        <input id="file-upload" type="file" accept=".vhd,.vhdl,text/plain" multiple hidden>
+      </div>
+      <div id="project-tree" class="project-tree" role="tree" aria-label="Progetti VHDL"></div>
+      <div class="sidebar-footer">
+        <button id="stop-service" class="danger service-stop" title="Chiudi UFO-WA e arresta il servizio">QUIT</button>
+        <button id="rename-selected" title="Rinomina elemento selezionato">✎ Rinomina</button>
+        <button id="delete-selected" class="danger" title="Elimina in modo recuperabile">⌫ Elimina</button>
+      </div>
+    </aside>
+
+    <section class="workbench">
+      <div class="action-bar panel">
+        <img class="unipr-seal" src="/immagini/sigillo-unipr.svg" alt="Università di Parma">
+        <div class="action-row synthesis-row">
+          <label>
+            <span>Design2RTL</span>
+            <select id="top-select"><option value="">— seleziona —</option></select>
+          </label>
+          <button class="action-button primary synth" id="synthesize-rtl">SINTESI RTL</button>
+          <button class="action-button primary synth" id="synthesize">SINTESI GATE</button>
+          <button class="action-button primary synth" id="vivo">ViVo</button>
+        </div>
+        <div class="action-row simulation-row">
+          <label>
+            <span>Testbench</span>
+            <select id="testbench-select"><option value="">— seleziona —</option></select>
+          </label>
+          <button class="action-button primary" id="simulate">SIMULA</button>
+          <label class="interactive-toggle" title="Avvia la simulazione in un Windows Terminal esterno">
+            <input id="interactive-simulation" type="checkbox">
+            <span>EXT_SIM</span>
+          </label>
+          <button class="action-button danger" id="stop-job" disabled>INTERROMPI</button>
+        </div>
+      </div>
+
+      <div class="editor-panel panel">
+        <div class="editor-header">
+          <div id="editor-tabs" class="editor-tabs" role="tablist"></div>
+          <button id="save-file" class="editor-save" title="Salva il file attivo">SALVA</button>
+        </div>
+        <div id="editor-welcome" class="editor-welcome">
+          <img class="welcome-ufo" src="/immagini/ufo.svg" alt="">
+          <h1>UFO</h1>
+          <p class="welcome-subtitle">VHDL Learning Workbench</p>
+          <p>Apri un file VHDL dall’albero oppure crea un nuovo progetto.</p>
+          <p class="hint"><kbd>Ctrl</kbd> + <kbd>S</kbd> salva il file attivo.</p>
+        </div>
+        <div id="editor" aria-label="Editor VHDL"></div>
+      </div>
+
+      <section class="console-panel panel" aria-label="Console didattica">
+        <div id="console-resizer" class="console-resizer" title="Ridimensiona la console" aria-label="Ridimensiona la console" role="separator"></div>
+        <div class="console-header">
+          <div>
+            <span>CONSOLE</span>
+            <span id="job-state" class="job-state idle">Pronta</span>
+          </div>
+          <div>
+            <button class="icon-button" id="clear-console" title="Pulisci console">⌫</button>
+            <button class="icon-button" id="toggle-console" title="Riduci console">⌄</button>
+          </div>
+        </div>
+        <div id="console-output" class="console-output" role="log" aria-live="polite"></div>
+      </section>
+    </section>
+  </main>
+
+  <dialog id="input-dialog">
+    <form method="dialog">
+      <h2 id="dialog-title">Inserisci un valore</h2>
+      <p id="dialog-description"></p>
+      <input id="dialog-input" autocomplete="off" maxlength="128">
+      <div class="dialog-actions">
+        <button value="cancel">Annulla</button>
+        <button value="confirm" class="primary">Conferma</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast-region" class="toast-region" aria-live="polite"></div>
+  <script src="/vendor/monaco/vs/loader.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

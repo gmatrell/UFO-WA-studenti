@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="ufo-token" content="__UFO_TOKEN__">
+  <title>ViVo — VHDL Interactive Virtual Objects</title>
+  <link rel="stylesheet" href="/vivo.css">
+</head>
+<body>
+  <main class="vivo-layout">
+    <aside class="vivo-panel vivo-library" aria-label="Libreria ViVoO">
+      <div class="vivo-panel-title">ViVo Objects</div>
+      <div class="library-content">
+        <section class="library-group">
+          <h2>INPUT</h2>
+          <div id="vivoo-input-library" class="vivoo-library-list"></div>
+        </section>
+        <section class="library-group">
+          <h2>OUTPUT</h2>
+          <div id="vivoo-output-library" class="vivoo-library-list"></div>
+        </section>
+      </div>
+      <div class="library-actions">
+        <button id="import-vivoo" disabled>IMPORTA</button>
+        <div class="simulation-controls">
+          <button id="vivo-start" disabled>START</button>
+          <button id="vivo-stop" disabled>STOP</button>
+        </div>
+        <div id="vivo-simulation-status" class="vivo-simulation-status" aria-live="polite">SIMULAZIONE FERMA</div>
+      </div>
+    </aside>
+
+    <section class="vivo-panel vivo-design" aria-label="Disegno">
+      <div class="vivo-panel-title vivo-design-title">Progetto Virtual-In-Virtual-Out <span id="design-caption"></span></div>
+      <div id="design-canvas" class="design-canvas">
+        <div id="fpga-object" class="fpga-object" __VIVO_BLOCK_HIDDEN__>
+          <div class="fpga-assembly">
+            <div class="fpga-label">Rete Logica</div>
+            <div class="port-column input-ports" id="input-ports">__VIVO_INPUTS__</div>
+            <div id="fpga-block" class="fpga-block">
+              <div class="fpga-core">
+                <div id="entity-name" class="entity-name">__VIVO_ENTITY__</div>
+              </div>
+            </div>
+            <div class="port-column output-ports" id="output-ports">__VIVO_OUTPUTS__</div>
+          </div>
+        </div>
+        <div id="vivoo-layer" class="vivoo-layer" aria-label="Oggetti virtuali ViVoO"></div>
+        <p id="design-status" class="design-status" __VIVO_STATUS_HIDDEN__>__VIVO_STATUS__</p>
+      </div>
+    </section>
+
+    <section class="vivo-panel vivo-console" aria-label="Console ViVo">
+      <div id="console-resizer" class="vivo-console-resizer" title="Ridimensiona la console" aria-label="Ridimensiona la console" role="separator"></div>
+      <div class="vivo-panel-title">CONSOLE</div>
+      <div id="console-output" class="vivo-console-output" role="log" aria-live="polite"></div>
+    </section>
+  </main>
+  <div id="vivo-toast" class="vivo-toast" role="status" aria-live="polite" hidden></div>
+  <script id="vivo-design-data" type="application/json">__VIVO_DESIGN__</script>
+  <script src="/vivo.js"></script>
+</body>
+</html>

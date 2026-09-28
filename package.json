@@ -1,0 +1,18 @@
+{
+  "name": "ufo-wa",
+  "version": "1.9.5",
+  "private": true,
+  "description": "UFO: WebApp didattica locale per simulazione e sintesi VHDL",
+  "main": "src/cli.js",
+  "scripts": {
+    "start": "node src/cli.js",
+    "test": "node --test --test-concurrency=1",
+    "rtl:and2": "netlistsvg Test/AND2/AND2_synth.json -o Test/AND2/AND2.svg"
+  },
+  "devDependencies": {
+    "netlistsvg": "1.0.2"
+  },
+  "dependencies": {
+    "monaco-editor": "0.56.0"
+  }
+}

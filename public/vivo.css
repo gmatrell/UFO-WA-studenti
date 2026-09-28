@@ -1,0 +1,228 @@
+:root {
+  --bg: #071014;
+  --panel: #0d171c;
+  --panel-2: #111f25;
+  --border: #29434d;
+  --border-soft: #1b3038;
+  --text: #d8e4e8;
+  --muted: #80959d;
+  --cyan: #20d8f4;
+  --green: #69d35d;
+  --amber: #ffbd4a;
+  --shadow: 0 12px 40px rgba(0, 0, 0, .28);
+}
+
+* { box-sizing: border-box; }
+html, body { width: 100%; height: 100%; margin: 0; }
+body {
+  overflow: hidden;
+  color: var(--text);
+  background: radial-gradient(circle at 50% 0, #122c35 0, var(--bg) 46%);
+  font: 14px/1.4 "Segoe UI", sans-serif;
+}
+
+.vivo-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) var(--vivo-console-height, 120px);
+  gap: 7px;
+  width: 100%;
+  height: 100%;
+  padding: 7px;
+}
+.vivo-panel {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: rgba(13, 23, 28, .96);
+  box-shadow: var(--shadow);
+}
+.vivo-panel-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 42px;
+  padding: 0 14px;
+  color: var(--cyan);
+  border-bottom: 1px solid var(--border);
+  font: 700 14px/1 "Cascadia Code", monospace;
+  letter-spacing: .08em;
+}
+.vivo-design-title { justify-content: flex-start; gap: 7px; }
+.vivo-library { grid-column: 1; grid-row: 1; display: grid; grid-template-rows: 42px minmax(0, 1fr) auto; }
+.library-content { min-height: 0; overflow-y: auto; }
+.library-group { padding: 14px; border-bottom: 1px solid var(--border-soft); }
+.library-group h2 { margin: 0; color: var(--muted); font-size: 11px; letter-spacing: .12em; }
+.vivoo-library-list { display: grid; gap: 7px; margin-top: 10px; }
+.vivoo-library-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 48px;
+  padding: 7px 9px;
+  color: var(--text);
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+.vivoo-library-item:hover { border-color: var(--border); background: var(--panel-2); }
+.vivoo-library-item.selected { color: #f5fdff; border-color: var(--cyan); background: rgba(32, 216, 244, .12); box-shadow: inset 3px 0 0 var(--cyan); }
+.vivoo-library-icon { width: 32px; height: 32px; flex: 0 0 32px; object-fit: contain; }
+.vivoo-library-label { font-size: 13px; font-weight: 600; }
+.library-actions { padding: 10px; border-top: 1px solid var(--border); }
+.library-actions button { width: 100%; min-height: 34px; color: #061115; border: 1px solid var(--cyan); background: var(--cyan); font-weight: 700; letter-spacing: .08em; }
+.library-actions button:hover:not(:disabled) { border-color: #70eafa; background: #70eafa; }
+.library-actions button:disabled { opacity: .4; cursor: not-allowed; }
+.simulation-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+.simulation-controls #vivo-stop { color: #fff5f1; border-color: #c95d57; background: #8d3936; }
+.vivo-simulation-status { margin-top: 8px; color: var(--muted); font: 700 10px/1.2 "Cascadia Code", monospace; letter-spacing: .06em; text-align: center; }
+.vivo-simulation-status.active { color: var(--green); }
+.vivo-design { grid-column: 2; grid-row: 1; display: grid; grid-template-rows: 42px minmax(0, 1fr); }
+.design-canvas { position: relative; min-height: 0; overflow: auto; display: grid; place-items: center; padding: 30px 18px; }
+.design-status { color: var(--muted); text-align: center; }
+.design-status.error { color: #ff8985; }
+.fpga-object[hidden], .design-status[hidden] { display: none !important; }
+.fpga-object { width: max-content; max-width: 100%; }
+.fpga-assembly { display: grid; grid-template-columns: auto 160px auto; grid-template-rows: auto 320px; row-gap: 7px; align-items: stretch; width: max-content; max-width: 100%; }
+.fpga-label { grid-column: 2; grid-row: 1; justify-self: center; color: var(--muted); font: 700 11px/1 "Cascadia Code", monospace; letter-spacing: .16em; }
+.fpga-block {
+  grid-column: 2;
+  grid-row: 2;
+  display: grid;
+  width: 160px;
+  height: 320px;
+  border: 2px solid var(--cyan);
+  background: linear-gradient(145deg, #10252c, #0a151a);
+  box-shadow: 0 0 0 1px rgba(32, 216, 244, .15), 0 15px 38px rgba(0, 0, 0, .35);
+}
+.fpga-core { display: grid; place-content: center; justify-items: center; min-width: 0; padding: 24px 12px; text-align: center; }
+.entity-name { max-width: 100%; overflow-wrap: anywhere; color: #f1fcff; font: 700 clamp(18px, 3vw, 28px)/1.15 "Cascadia Code", monospace; }
+.port-column { grid-row: 2; display: flex; flex-direction: column; justify-content: center; gap: 11px; min-width: 0; padding: 18px 0; }
+.input-ports { grid-column: 1; }
+.output-ports { grid-column: 3; }
+.port-row { display: flex; align-items: center; min-width: 0; min-height: 22px; color: var(--text); font: 13px/1.2 "Cascadia Code", monospace; }
+.input-ports .port-row { justify-content: flex-end; }
+.output-ports .port-row { justify-content: flex-start; }
+.port-label { overflow-wrap: anywhere; }
+.fpga-pin, .vivoo-pin {
+  display: block;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  background: var(--cyan);
+  clip-path: polygon(0 37.5%, 72% 37.5%, 72% 0, 100% 50%, 72% 100%, 72% 62.5%, 0 62.5%);
+}
+.fpga-pin.connected, .vivoo-pin.connected { background: var(--green); }
+.input-port .fpga-pin { margin-left: 0; }
+.output-port .fpga-pin { margin-right: 0; }
+.vivoo-layer { position: absolute; z-index: 4; inset: 0; pointer-events: none; }
+.vivoo-instance {
+  position: absolute;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 60px 16px;
+  justify-items: center;
+  align-items: center;
+  width: 62px;
+  min-height: 80px;
+  padding: 0;
+  color: var(--text);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  pointer-events: auto;
+}
+.vivoo-instance.selected .vivoo-state-control { border-color: var(--cyan); box-shadow: 0 0 0 1px rgba(32, 216, 244, .45), 0 8px 20px rgba(0, 0, 0, .28); }
+.vivoo-instance:active { cursor: grabbing; }
+.vivoo-instance:hover .vivoo-state-control { border-color: var(--cyan); }
+.vivoo-state-control {
+  grid-column: 1;
+  grid-row: 1;
+  display: grid;
+  grid-template-rows: 42px 18px;
+  place-items: center;
+  width: 62px;
+  height: 60px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: rgba(17, 31, 37, .96);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .28);
+  cursor: grab;
+  touch-action: manipulation;
+}
+.vivoo-state-control:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; border-radius: 4px; }
+.vivoo-instance-icon { grid-column: 1; grid-row: 1; width: 36px; height: 36px; object-fit: contain; pointer-events: none; }
+.vivoo-input img.vivoo-instance-icon { pointer-events: auto; cursor: pointer; }
+.seven-segment-svg { overflow: visible; }
+.seven-segment-part { transition: fill .12s ease; }
+.seven-segment-part.segment-off { fill: #29434d; stroke: #173f48; stroke-width: 1px; }
+.seven-segment-part.segment-on { fill: var(--amber); stroke: #fff0bc; stroke-width: 1px; }
+.vivoo-instance .seven-segment-svg { width: 30px; height: 44px; }
+.vivoo-library-item .seven-segment-svg { width: 26px; height: 32px; }
+.hex-keypad-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px; width: 100%; height: 100%; }
+.hex-keypad-key { min-width: 0; min-height: 17px; padding: 0; color: var(--text); border: 1px solid var(--border); border-radius: 2px; background: #0a151a; font: 700 10px/1 "Cascadia Code", monospace; cursor: pointer; }
+.hex-keypad-key:hover, .hex-keypad-key.selected { color: #061115; border-color: var(--cyan); background: var(--cyan); }
+.vivoo-library-item .hex-keypad-grid { width: 32px; height: 32px; gap: 1px; flex: 0 0 32px; }
+.vivoo-library-item .hex-keypad-key { min-height: 7px; border-width: 0; font-size: 7px; }
+.vivoo-hex-keypad { width: 130px; min-height: 118px; grid-template-rows: 102px 16px; gap: 0; }
+.vivoo-hex-keypad .vivoo-state-control { grid-column: 1; grid-row: 1; grid-template-rows: 84px 18px; width: 130px; height: 102px; }
+.vivoo-hex-keypad .vivoo-instance-icon { width: 100%; height: 84px; pointer-events: auto; }
+.vivoo-hex-keypad .vivoo-pin { top: 49px; right: -28px; }
+.vivoo-hex-keypad .vivoo-pin-connection { top: 32px; }
+.vivoo-instance-label { grid-column: 1; grid-row: 2; max-width: 100%; overflow: hidden; color: #f1fcff; font: 700 12px/1 "Cascadia Code", monospace; text-align: center; text-overflow: ellipsis; white-space: nowrap; pointer-events: none; }
+.vivoo-instance-value { grid-column: 1; grid-row: 2; min-width: 30px; padding: 2px 5px; color: var(--cyan); border: 1px solid var(--border); border-radius: 3px; background: #0a151a; font: 700 10px/1 "Cascadia Code", monospace; letter-spacing: .04em; text-align: center; pointer-events: none; }
+.vivoo-delete { position: absolute; z-index: 2; top: -7px; right: -7px; display: grid; place-items: center; width: 18px; height: 18px; padding: 0; color: #fff; border: 1px solid var(--border); border-radius: 50%; background: rgba(17, 31, 37, .96); cursor: pointer; font: 700 13px/1 "Segoe UI", sans-serif; }
+.vivoo-delete:hover:not(:disabled) { color: #fff; border-color: var(--border); background: rgba(17, 31, 37, .96); }
+.vivoo-delete:focus-visible { outline: 2px solid var(--cyan); outline-offset: 1px; }
+.vivoo-delete:disabled { opacity: .4; cursor: not-allowed; }
+.vivoo-pin-select { width: 160px; height: 26px; min-width: 0; padding: 1px 4px; color: var(--text); border: 1px solid var(--border); border-radius: 3px; background: #0a151a; font: 11px/1 "Cascadia Code", monospace; }
+.vivoo-pin-select:focus { outline: 1px solid var(--cyan); border-color: var(--cyan); }
+.vivoo-pin {
+  position: absolute;
+  top: 29px;
+  cursor: pointer;
+}
+.vivoo-pin:focus-visible { outline: 2px solid #f1fcff; outline-offset: 2px; }
+.vivoo-input .vivoo-pin { right: -28px; }
+.vivoo-output .vivoo-pin { left: -28px; transform: rotate(180deg); }
+.vivoo-pin-connection { position: absolute; top: 12px; width: 88px; overflow: hidden; color: #f1fcff; font: 700 9px/1 "Cascadia Code", monospace; text-overflow: ellipsis; white-space: nowrap; pointer-events: none; }
+.vivoo-input .vivoo-pin-connection { left: calc(100% + 8px); text-align: left; }
+.vivoo-output .vivoo-pin-connection { right: calc(100% + 8px); text-align: right; }
+.vivoo-pin-popover {
+  position: absolute;
+  z-index: 6;
+  padding: 5px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: var(--panel-2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .38);
+  pointer-events: auto;
+}
+.vivo-console { position: relative; z-index: 2; overflow: visible; grid-column: 1 / -1; grid-row: 2; display: grid; grid-template-rows: 42px minmax(0, 1fr); }
+.vivo-console-resizer { position: absolute; z-index: 10; top: -7px; left: 0; right: 0; height: 14px; cursor: ns-resize; touch-action: none; }
+.vivo-console-resizer::after { content: ""; position: absolute; left: 50%; top: 6px; width: 42px; height: 3px; transform: translateX(-50%); border-radius: 2px; background: var(--border); }
+.vivo-console-resizer:hover::after, body.resizing-vivo-console .vivo-console-resizer::after { background: var(--cyan); }
+body.resizing-vivo-console { cursor: ns-resize; user-select: none; }
+.vivo-console-output { min-height: 0; overflow: auto; padding: 10px 14px; color: #bfcdd2; background: #080f12; font: 13px/1.5 "Cascadia Code", monospace; white-space: pre-wrap; }
+.console-line { margin: 0 0 4px; }
+.console-line.status { color: var(--green); }
+.console-line.warning { color: var(--amber); }
+.console-line.error { color: #ff8985; }
+.vivo-toast { position: fixed; z-index: 20; right: 18px; bottom: 18px; display: flex; align-items: center; gap: 12px; max-width: min(360px, calc(100vw - 36px)); padding: 9px 11px; color: var(--text); border: 1px solid var(--border); border-radius: 5px; background: var(--panel-2); box-shadow: var(--shadow); font: 12px/1.3 "Cascadia Code", monospace; }
+.vivo-toast[hidden] { display: none; }
+.vivo-toast button { min-height: 26px; padding: 3px 8px; color: #061115; border: 1px solid var(--cyan); border-radius: 3px; background: var(--cyan); cursor: pointer; font: 700 10px/1 "Cascadia Code", monospace; }
+.vivo-toast button:hover, .vivo-toast button:focus-visible { background: #70eafa; }
+
+@media (max-width: 700px) {
+  .vivo-layout { grid-template-columns: 150px minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) var(--vivo-console-height, 110px); }
+  .design-canvas { padding: 18px 8px; }
+  .fpga-object { width: max-content; max-width: 100%; }
+  .port-row { font-size: 10px; }
+}

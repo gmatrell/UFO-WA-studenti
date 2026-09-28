@@ -1,0 +1,67 @@
+# Dipendenze installate localmente
+node_modules/
+
+# File temporanei, cache e strumenti di sviluppo
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.cache/
+.pytest_cache/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*:Zone.Identifier
+
+# Configurazioni locali e possibili credenziali
+.env
+.env.*
+!.env.example
+.npmrc
+.yarnrc
+.pypirc
+*.local
+*.local.*
+config.local.*
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+
+# Lavoro e cache GHDL
+**/work-obj*.cf
+**/.ghdl/
+**/ghdl-work/
+
+# Stato, build e run locali UFO
+**/.ufo/build/
+**/.ufo/logs/
+**/.ufo/runs/
+**/.ufo_terminal.log
+**/results/
+
+# Log e risultati generati non selezionati come riferimenti
+*.log
+*.vcd
+*.svg
+!immagini/vivo-*.svg
+*_synth.v
+*_synth.json
+*.o
+
+# Eseguibili generati dal caso RCA
+/Test/RCA/*.json
+/Test/RCA/ha_tb
+/Test/RCA/fa_tb
+/Test/RCA/rca_tb
+
+# Artefatti AND2 collaudati e documentati da conservare
+!/Test/AND2/AND2.svg
+!/Test/AND2/AND2_synth.json
+!/Test/AND2/AND2_synth.v
+!/Test/AND2/AND2_tb.vcd
+!/Test/AND2/AND2_yosys.log
