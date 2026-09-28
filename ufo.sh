@@ -104,6 +104,17 @@ check_optional_tools() {
   fi
 }
 
+ensure_workspace() {
+  local workspace_root="${HOME:?}/Workspace"
+  if [[ -e "$workspace_root" && ! -d "$workspace_root" ]]; then
+    die "$workspace_root esiste ma non è una directory"
+  fi
+  if [[ ! -d "$workspace_root" ]]; then
+    mkdir -p "$workspace_root"
+    log "Creata la radice dei progetti: $workspace_root"
+  fi
+}
+
 require_command git
 require_command node
 require_command npm
@@ -157,6 +168,7 @@ fi
 
 ensure_dependencies
 check_optional_tools
+ensure_workspace
 
 log "Avvio UFO $installed_version."
 cd "$INSTALL_DIR"
