@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">UFO</title>
+  <desc id="desc">Disco volante viola e turchese con tre fasci di luce</desc>
+  <defs>
+    <linearGradient id="dome" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#92F2E8"/>
+      <stop offset="1" stop-color="#32BEB9"/>
+    </linearGradient>
+    <linearGradient id="hull" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8D7CFF"/>
+      <stop offset="1" stop-color="#5543C3"/>
+    </linearGradient>
+  </defs>
+  <path d="M25 46 19 60M32 47v14M39 46l6 14" fill="none" stroke="#F5C451" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+  <path d="M21 28c1.8-9 5.2-14 11-14s9.2 5 11 14" fill="url(#dome)" stroke="#25314D" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M10 33c4.8-5.5 12.1-8 22-8s17.2 2.5 22 8c-2 9-9.3 14-22 14S12 42 10 33Z" fill="url(#hull)" stroke="#25314D" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M12 34c5.5 3.3 12.2 5 20 5s14.5-1.7 20-5" fill="none" stroke="#BFB5FF" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="21" cy="38" r="2" fill="#F5C451"/>
+  <circle cx="32" cy="41" r="2" fill="#F5C451"/>
+  <circle cx="43" cy="38" r="2" fill="#F5C451"/>
+</svg>

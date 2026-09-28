@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Progetto UFO</title>
+  <desc id="desc">Cartella di progetto con un piccolo disco volante</desc>
+  <defs>
+    <linearGradient id="folder" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8D7CFF"/>
+      <stop offset="1" stop-color="#5B4BCE"/>
+    </linearGradient>
+  </defs>
+  <path d="M7 17a4 4 0 0 1 4-4h15l6 6h21a4 4 0 0 1 4 4v5H7Z" fill="#7463E7" stroke="#25314D" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M7 25h50v27a5 5 0 0 1-5 5H12a5 5 0 0 1-5-5Z" fill="url(#folder)" stroke="#25314D" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M24 39c1.2-5.4 3.8-8 8-8s6.8 2.6 8 8" fill="#79E1D8" stroke="#25314D" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M18 42c3.3-3.5 8-5 14-5s10.7 1.5 14 5c-2 5.3-6.7 8-14 8s-12-2.7-14-8Z" fill="#F1EEFF" stroke="#25314D" stroke-width="2" stroke-linejoin="round"/>
+  <circle cx="26" cy="44" r="1.5" fill="#F5C451"/>
+  <circle cx="32" cy="46" r="1.5" fill="#F5C451"/>
+  <circle cx="38" cy="44" r="1.5" fill="#F5C451"/>
+</svg>

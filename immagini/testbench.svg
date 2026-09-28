@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Testbench VHDL</title>
+  <desc id="desc">Documento arancione con forma d'onda di collaudo</desc>
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFF5E8"/>
+      <stop offset="1" stop-color="#FFE0B8"/>
+    </linearGradient>
+  </defs>
+  <path d="M14 6h23l13 13v39H14Z" fill="url(#paper)" stroke="#25314D" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M37 6v13h13" fill="#FFB354" stroke="#25314D" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M20 44h6V32h10v12h9" fill="none" stroke="#F07818" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m22 50 4 4 8-9" fill="none" stroke="#2EA878" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="45" cy="44" r="2" fill="#F07818"/>
+</svg>

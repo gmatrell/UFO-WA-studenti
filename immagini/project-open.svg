@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Progetto UFO aperto</title>
+  <desc id="desc">Cartella di progetto aperta con un piccolo disco volante</desc>
+  <defs>
+    <linearGradient id="folderBack" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8D7CFF"/>
+      <stop offset="1" stop-color="#5B4BCE"/>
+    </linearGradient>
+    <linearGradient id="folderFront" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8D7CFF"/>
+      <stop offset="1" stop-color="#5B4BCE"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Retro della cartella: mantiene geometria e palette dell'icona originale -->
+  <path d="M7 17a4 4 0 0 1 4-4h15l6 6h21a4 4 0 0 1 4 4v22H7Z"
+        fill="url(#folderBack)" stroke="#25314D" stroke-width="2.5"
+        stroke-linejoin="round"/>
+
+  <!-- Ombra interna che rende evidente l'apertura anche a dimensioni ridotte -->
+  <path d="M8 27h48l-2 7H10Z" fill="#5142B8"/>
+
+  <!-- Lembo frontale aperto -->
+  <path d="M10 29h48l-5 23a5 5 0 0 1-5 4H11a4 4 0 0 1-4-5l4-20a2 2 0 0 1 2-2Z"
+        fill="url(#folderFront)" stroke="#25314D" stroke-width="2.5"
+        stroke-linejoin="round"/>
+
+  <!-- UFO, ripreso dall'icona originale e spostato sul lembo frontale -->
+  <path d="M24 40c1.2-5.4 3.8-8 8-8s6.8 2.6 8 8"
+        fill="#79E1D8" stroke="#25314D" stroke-width="2"
+        stroke-linejoin="round"/>
+  <path d="M18 43c3.3-3.5 8-5 14-5s10.7 1.5 14 5c-2 5.3-6.7 8-14 8s-12-2.7-14-8Z"
+        fill="#F1EEFF" stroke="#25314D" stroke-width="2"
+        stroke-linejoin="round"/>
+  <circle cx="26" cy="45" r="1.5" fill="#F5C451"/>
+  <circle cx="32" cy="47" r="1.5" fill="#F5C451"/>
+  <circle cx="38" cy="45" r="1.5" fill="#F5C451"/>
+</svg>
